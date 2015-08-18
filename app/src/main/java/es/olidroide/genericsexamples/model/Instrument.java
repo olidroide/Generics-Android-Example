@@ -17,8 +17,4 @@ public abstract class Instrument<T> {
     public void play() {
         //Play a note
     }
-
-    public static String getTone(? ){
-
-    }
 }

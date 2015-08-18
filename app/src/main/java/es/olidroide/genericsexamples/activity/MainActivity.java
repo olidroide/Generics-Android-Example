@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import es.olidroide.genericsexamples.R;
+import es.olidroide.genericsexamples.model.Bass;
 import es.olidroide.genericsexamples.model.Drum;
 import es.olidroide.genericsexamples.model.ElectricGuitar;
 import es.olidroide.genericsexamples.model.Guitar;
@@ -23,11 +24,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        firstPrinciple();
+
         useGenericsWithInstruments();
 
         compareGenerics();
     }
 
+    private void firstPrinciple() {
+        StringInstrument<Guitar> guitarGeneric = new Guitar();
+        Log.i(getClass().getName(), "I am a "+guitarGeneric.getName()+" Using generics type");
+
+        //This not allowed because guitar is a subtype Guitar
+        //guitarGeneric = new Bass();
+
+        //We can't cast
+        //Bass bass = (Bass) new StringInstrument<Bass>(Bass.STRINGS);
+    }
 
     private void useGenericsWithInstruments() {
         Guitar guitar = new Guitar();
@@ -36,25 +49,25 @@ public class MainActivity extends AppCompatActivity {
 
         StringInstrument stringInstrument = guitar;
 
-        Log.i(this.getClass().getName(), "String instrument name: " + stringInstrument.getName() +
+        Log.i(getClass().getName(), "String instrument name: " + stringInstrument.getName() +
                 " and I have " + stringInstrument.getNumberOfStrings() + " Strings");
 
         stringInstrument = electricGuitar;
 
-        Log.i(this.getClass().getName(), "String instrument change to name: " + stringInstrument.getName() +
+        Log.i(getClass().getName(), "String instrument change to name: " + stringInstrument.getName() +
                 " and I have " + stringInstrument.getNumberOfStrings() + " Strings");
 
         Instrument instrument = drum;
 
-        Log.i(this.getClass().getName(), "instrument: " + instrument.getName());
+        Log.i(getClass().getName(), "instrument: " + instrument.getName());
 
         instrument = guitar;
 
-        Log.i(this.getClass().getName(), "instrument change to: " + instrument.getName());
+        Log.i(getClass().getName(), "instrument change to: " + instrument.getName());
 
         instrument = electricGuitar;
 
-        Log.i(this.getClass().getName(), "instrument change again to: " + instrument.getName());
+        Log.i(getClass().getName(), "instrument change again to: " + instrument.getName());
     }
 
     private void compareGenerics() {
